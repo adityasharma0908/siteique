@@ -1,5 +1,11 @@
-function Services() {
-  return <h1>Services Page</h1>;
-}
+import ServicesGrid from "../components/ServicesGrid";
+
+const Services = () => {
+  return (
+    <main>
+      <ServicesGrid />
+    </main>
+  );
+};
 
 export default Services;

@@ -1,5 +1,11 @@
-function About() {
-  return <h1>About Page</h1>;
-}
+import AboutContent from "../components/AboutContent";
+
+const About = () => {
+  return (
+    <main>
+      <AboutContent />
+    </main>
+  );
+};
 
 export default About;

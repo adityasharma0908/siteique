@@ -1,5 +1,11 @@
-function Projects() {
-  return <h1>Projects Page</h1>;
-}
+import FeaturedProjects from "../components/FeaturedProjects";
+
+const Projects = () => {
+  return (
+    <main>
+      <FeaturedProjects />
+    </main>
+  );
+};
 
 export default Projects;

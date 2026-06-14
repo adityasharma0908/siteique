@@ -1,5 +1,11 @@
-function Contact() {
-  return <h1>Contact Page</h1>;
-}
+import ContactSection from "../components/ContactSection";
+
+const Contact = () => {
+  return (
+    <main>
+      <ContactSection />
+    </main>
+  );
+};
 
 export default Contact;
