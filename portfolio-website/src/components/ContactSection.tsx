@@ -52,12 +52,15 @@ function ContactSection() {
 
     try {
 
-      await emailjs.send(
-        "service_taqik6h",
-        "template_6wln2gw",
-        formData,
-        "zzGcOiHZQmXYnpkF5"
-      );
+await emailjs.send(
+    import.meta.env.VITE_EMAILJS_SERVICE_ID,
+
+    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+
+    formData,
+
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+);
 
       setStatus(
         "Thank you! Your message has been sent successfully."
@@ -70,16 +73,18 @@ function ContactSection() {
         message: "",
       });
 
-    } 
-catch (error) {
+    }
+    catch (error) {
 
-  console.error(error);
+      console.error(error);
 
-  setStatus(
-    "Something went wrong. Please try again."
-  );
+      setStatus(
+        "Something went wrong. Please try again."
+      );
 
-}
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <section className="py-5">
@@ -137,12 +142,12 @@ catch (error) {
                         <Form.Label>Name</Form.Label>
 
                         <Form.Control
-  type="text"
-  name="from_name"
-  value={formData.from_name}
-  onChange={handleChange}
-  required
-/>
+                          type="text"
+                          name="from_name"
+                          value={formData.from_name}
+                          onChange={handleChange}
+                          required
+                        />
                       </Form.Group>
                     </Col>
 
@@ -151,12 +156,12 @@ catch (error) {
                         <Form.Label>Email</Form.Label>
 
                         <Form.Control
-  type="email"
-  name="from_email"
-  value={formData.from_email}
-  onChange={handleChange}
-  required
-/>
+                          type="email"
+                          name="from_email"
+                          value={formData.from_email}
+                          onChange={handleChange}
+                          required
+                        />
                       </Form.Group>
                     </Col>
 
@@ -165,12 +170,12 @@ catch (error) {
                         <Form.Label>Company</Form.Label>
 
                         <Form.Control
-  type="text"
-  name="subject"
-  value={formData.subject}
-  onChange={handleChange}
-  required
-/>
+                          type="text"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                        />
                       </Form.Group>
                     </Col>
 
@@ -200,15 +205,15 @@ catch (error) {
                           Project Details
                         </Form.Label>
 
-                       <Form.Control
-  as="textarea"
-  rows={6}
-  name="message"
-  value={formData.message}
-  onChange={handleChange}
-  placeholder="Tell us about your project..."
-  required
-/>
+                        <Form.Control
+                          as="textarea"
+                          rows={6}
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          placeholder="Tell us about your project..."
+                          required
+                        />
                       </Form.Group>
                     </Col>
 
@@ -216,33 +221,32 @@ catch (error) {
 
                   <MagneticButton>
 
-                   <Button
-  className="btn-primary-custom"
-  size="lg"
-  type="submit"
-  disabled={loading}
->
+                    <Button
+                      className="btn-primary-custom"
+                      size="lg"
+                      type="submit"
+                      disabled={loading}
+                    >
 
-  {loading
-    ? "Sending..."
-    : "Send Inquiry"}
+                      {loading
+                        ? "Sending..."
+                        : "Send Inquiry"}
 
-</Button>
-{status && (
+                    </Button>
+                    {status && (
 
-  <p
-    className={`mt-3 ${
-      status.includes("successfully")
-        ? "text-success"
-        : "text-danger"
-    }`}
-  >
+                      <p
+                        className={`mt-3 ${status.includes("successfully")
+                            ? "text-success"
+                            : "text-danger"
+                          }`}
+                      >
 
-    {status}
+                        {status}
 
-  </p>
+                      </p>
 
-)}
+                    )}
 
                   </MagneticButton>
 
